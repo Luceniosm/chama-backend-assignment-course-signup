@@ -1,11 +1,17 @@
 Arquitetura:
 |---CourseSignUp.Api
 	|---CourseSignUp.Application
+	
 	|---CourseSignUp.Domain
+	
 	|---CourseSignUp.DTO
+	
 	|---CourseSignUp.Infra.Data
+	
 	|---CourseSignUp.Infra.Ioc
+	
 	|---CourseSignUp.Messege
+	
 |---CourseSignUp.Received - Azure Service Bus
 |---CourseSignUp.Functions - Azure Function Timer Triger
 
