@@ -4,7 +4,7 @@ namespace CourseSignUp.Api.Courses
 {
     public class SignUpToCourseDto
     {
-        public string CourseId { get; set; }
+        public Guid IdCourse { get; set; }
         public StudentDto Student { get; set; }
 
         public class StudentDto

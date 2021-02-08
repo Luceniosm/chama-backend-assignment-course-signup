@@ -1,3 +1,5 @@
+using CourseSignUp.Infra.Data.Context;
+using CourseSignUp.Infra.Ioc;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -16,8 +18,10 @@ namespace CourseSignUp.Api
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
-        {
+        {            
             services.AddControllers();
+            services.AddDbContext<CourseSignUpContext>();
+            RegisterServices(services);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -33,6 +37,12 @@ namespace CourseSignUp.Api
             {
                 endpoints.MapControllers();
             });
+
+            bootstrapper.InitializeMigrations(app);
+        }
+        private static void RegisterServices(IServiceCollection services)
+        {            
+            bootstrapper.RegisterServices(services);
         }
     }
 }

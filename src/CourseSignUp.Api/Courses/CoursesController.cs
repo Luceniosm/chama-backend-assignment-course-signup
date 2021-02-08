@@ -1,12 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using CourseSignUp.Messege.Interface;
 
 namespace CourseSignUp.Api.Courses
 {
     [ApiController, Route("[controller]")]
     public class CoursesController : ControllerBase
     {
+        private readonly IQueueService _queueService;
+        public CoursesController(IQueueService queueService)
+        {
+            _queueService = queueService;
+        }
         [HttpGet, Route("{id}")]
         public async Task<IActionResult> Get(string id)
         {
@@ -24,10 +30,10 @@ namespace CourseSignUp.Api.Courses
         }
 
         [HttpPost, Route("sign-up")]
-        public Task<IActionResult> Post([FromBody] SignUpToCourseDto signUpToCourseDto)
+        public async Task<IActionResult> Post([FromBody] SignUpToCourseDto signUpToCourseDto)
         {
-            throw new NotImplementedException();
-
+            await _queueService.SendMessageAsync(signUpToCourseDto, "coursequeue");
+            return Ok(true);
         }
     }
 }

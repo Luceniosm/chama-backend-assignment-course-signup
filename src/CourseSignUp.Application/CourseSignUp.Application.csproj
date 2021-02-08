@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\CourseSignUp.Domain\CourseSignUp.Domain.csproj" />
+      <ProjectReference Include="..\CourseSignUp.DTO\CourseSignUp.DTO.csproj" />
+    </ItemGroup>
+
+</Project>
